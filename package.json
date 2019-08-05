@@ -1,10 +1,12 @@
 {
 	"name": "cloudformation-ext-resourcespec-vscode",
 	"displayName": "cloudformation-ext-resourcespec-vscode",
-	"repository": {"url": "https://github.com/bg46z/cloudformation-ext-resourcespec-vscode"},
+	"repository": {
+		"url": "https://github.com/bg46z/cloudformation-ext-resourcespec-vscode"
+	},
 	"publisher": "zbridges",
 	"description": "",
-	"version": "0.0.1",
+	"version": "0.1.0",
 	"engines": {
 		"vscode": "^1.16.0"
 	},
@@ -16,8 +18,7 @@
 		"*"
 	],
 	"main": "./out/extension.js",
-	"contributes": {
-	},
+	"contributes": {},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
 		"compile": "tsc -p ./",
