@@ -1,6 +1,7 @@
 {
-	"name": "cloudformation-ext-vscode",
-	"displayName": "cloudformation-ext-vscode",
+	"name": "cloudformation-ext-resourcespec-vscode",
+	"displayName": "cloudformation-ext-resourcespec-vscode",
+	"repository": {"url": "https://github.com/bg46z/cloudformation-ext-resourcespec-vscode"},
 	"description": "",
 	"version": "0.0.1",
 	"engines": {
@@ -10,22 +11,10 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:extension.helloWorld",
-		"onCommand:extension.getResourceSpec",
 		"*"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
-		"commands": [
-			{
-				"command": "extension.helloWorld",
-				"title": "Hello World"
-			},
-			{
-				"command": "extension.getResourceSpec",
-				"title": "Get Resource Spec"
-			}
-		]
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",

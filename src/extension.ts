@@ -11,52 +11,32 @@ export function activate(context: vscode.ExtensionContext) {
 	keys.forEach( key => {
 		var ResourceSpecItem = new rs.ResourceSpecCompletionItem(key);
 		var vsitem = new vscode.CompletionItem(key);
-		var elements : any[] = [];
-		ResourceSpecItem.completionItemProperties.forEach( (e) => {elements.push(e.PropertyName + ": ");});
-		var elementStringWithNewLine :string = elements.join('\n    ');
+		var elements : string[] = [];
+		
+		//apparently you can't run javascript like this in a template string
+		ResourceSpecItem.completionItemProperties.forEach( (e, index) => { 
+			var eindex = index + 2; 
+			elements.push(e.PropertyName + ": ${" + eindex + "}" );
+		});
+
+		var elementStringWithNewLine : string = elements.join('\n    ');
+
 		var snippetString =`\n  Type: ${ResourceSpecItem.completionItemName}\n  Properties:\n    ${elementStringWithNewLine}`;
-		vsitem.insertText = new vscode.SnippetString("${1:itemName}" + snippetString);
+		vsitem.insertText = new vscode.SnippetString("${1:itemName}:" + snippetString);
 
 		completions.push(vsitem);
 	});
 
 
-	let resourceTypeProvider = vscode.languages.registerCompletionItemProvider( 'yaml', {
+	let resourceTypeProviderYAML = vscode.languages.registerCompletionItemProvider( 'yaml', {
 		provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext) {
-
 			return completions;
 		}
 	});
 
-	// let propertyTypeProvider = vscode.languages.registerCompletionItemProvider( 'yaml', {
-	// 	provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext) {
-	// 		let keys : string[] = Object.keys(cloudformation.PropertyTypes);
-	// 		var completions : vscode.CompletionItem[] = [];
-			
-	// 		keys.forEach( key => {
-	// 			completions.push(new vscode.CompletionItem(key.toString()));
-	// 		});
+	//todo resourceTypeProviderJSON
 
-	// 		return completions;
-	// 	}
-	// });
-
-	let completionProvider2 = vscode.languages.registerCompletionItemProvider('plaintext', {
-
-		provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext) {
-
-			const snippetCompletion = new vscode.CompletionItem('Good part of the day');
-			snippetCompletion.insertText = new vscode.SnippetString('Good ${1|morning,afternoon,evening|}. It is ${1}, right?');
-			snippetCompletion.documentation = new vscode.MarkdownString("Inserts a snippet that lets you select the _appropriate_ part of the day for your greeting.");
-
-			// return all completion items as array
-			return [
-				snippetCompletion,
-			];
-		}
-	});
-
-	context.subscriptions.push(resourceTypeProvider);
+	context.subscriptions.push(resourceTypeProviderYAML);
 }
 
 export function deactivate() {}
