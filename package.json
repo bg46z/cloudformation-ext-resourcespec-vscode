@@ -5,7 +5,7 @@
 		"url": "https://github.com/bg46z/cloudformation-ext-resourcespec-vscode"
 	},
 	"publisher": "zbridges",
-	"description": "",
+	"description": "CloudFormation Snippets based on AWS resource specification",
 	"version": "0.4.0",
 	"engines": {
 		"vscode": "^1.36.0"
