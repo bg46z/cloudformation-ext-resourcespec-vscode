@@ -5,5 +5,8 @@ The extension takes the Cloudformation Resource Specification provided by AWS an
 Only provides resources marked as Required.
 
 ## Features
+* Resource Autocompletion
+![Resource Completion in Action](docs/cloudformation-ext-vscode-resourcecompletion.gif)
 
-![code in action](docs/cloudformation-ext-vscode.gif)
+* Property Autocompletion
+![Property Completion in Action](docs/cloudformation-ext-vscode-propertycompletion.gif)
