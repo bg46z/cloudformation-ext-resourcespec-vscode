@@ -15,7 +15,9 @@
 		"Snippets"
 	],
 	"activationEvents": [
-		"*"
+		"onLanguage:yaml",
+		"workspaceContains:**/*.yml",
+		"workspaceContains:**/*.yaml"
 	],
 	"main": "./out/extension.js",
 	"contributes": {},
